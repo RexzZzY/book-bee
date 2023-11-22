@@ -1,126 +1,73 @@
-# NestJS Starter
-[![CI](https://github.com/thisismydesign/nestjs-starter/actions/workflows/ci.yml/badge.svg)](https://github.com/thisismydesign/nestjs-starter/actions/workflows/ci.yml)
+<p align="center">
+  <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo-small.svg" width="120" alt="Nest Logo" /></a>
+</p>
 
-#### NestJS MVC boilerplate for rapid development with battle-tested standards.
+[circleci-image]: https://img.shields.io/circleci/build/github/nestjs/nest/master?token=abc123def456
+[circleci-url]: https://circleci.com/gh/nestjs/nest
+  
+  <p align="center">A progressive <a href="http://nodejs.org" target="_blank">Node.js</a> framework for building efficient and scalable server-side applications.</p>
+    <p align="center">
+<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/v/@nestjs/core.svg" alt="NPM Version" /></a>
+<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/l/@nestjs/core.svg" alt="Package License" /></a>
+<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/dm/@nestjs/common.svg" alt="NPM Downloads" /></a>
+<a href="https://circleci.com/gh/nestjs/nest" target="_blank"><img src="https://img.shields.io/circleci/build/github/nestjs/nest/master" alt="CircleCI" /></a>
+<a href="https://coveralls.io/github/nestjs/nest?branch=master" target="_blank"><img src="https://coveralls.io/repos/github/nestjs/nest/badge.svg?branch=master#9" alt="Coverage" /></a>
+<a href="https://discord.gg/G7Qnnhy" target="_blank"><img src="https://img.shields.io/badge/discord-online-brightgreen.svg" alt="Discord"/></a>
+<a href="https://opencollective.com/nest#backer" target="_blank"><img src="https://opencollective.com/nest/backers/badge.svg" alt="Backers on Open Collective" /></a>
+<a href="https://opencollective.com/nest#sponsor" target="_blank"><img src="https://opencollective.com/nest/sponsors/badge.svg" alt="Sponsors on Open Collective" /></a>
+  <a href="https://paypal.me/kamilmysliwiec" target="_blank"><img src="https://img.shields.io/badge/Donate-PayPal-ff3f59.svg" alt="Donate us"/></a>
+    <a href="https://opencollective.com/nest#sponsor"  target="_blank"><img src="https://img.shields.io/badge/Support%20us-Open%20Collective-41B883.svg" alt="Support us"></a>
+  <a href="https://twitter.com/nestframework" target="_blank"><img src="https://img.shields.io/twitter/follow/nestframework.svg?style=social&label=Follow" alt="Follow us on Twitter"></a>
+</p>
+  <!--[![Backers on Open Collective](https://opencollective.com/nest/backers/badge.svg)](https://opencollective.com/nest#backer)
+  [![Sponsors on Open Collective](https://opencollective.com/nest/sponsors/badge.svg)](https://opencollective.com/nest#sponsor)-->
 
-[Use this template](https://github.com/thisismydesign/nestjs-starter/generate)
+## Description
 
-[![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy)
+[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
 
-## Stack
+## Installation
 
-It has
-- Example REST and GraphQL modules, DB using TypeORM as seen on https://docs.nestjs.com/
-- [Next.js](https://nextjs.org/) integration for React on the frontend ([howto article](https://csaba-apagyi.medium.com/nestjs-react-next-js-in-one-mvc-repo-for-rapid-prototyping-faed42a194ca))
-- Typed queries & results with GraphQL out of the box ([howto article](https://csaba-apagyi.medium.com/automagically-typed-graphql-queries-and-results-with-apollo-3731bad989aa))
-- Authentication via [Passport.js](http://www.passportjs.org/) including Social providers ([howto article](https://medium.com/csaba.apagyi/oauth2-in-nestjs-for-social-login-google-facebook-twitter-etc-8b405d570fd2)), [AWS Cognito](https://aws.amazon.com/cognito/) ([howto article](https://medium.com/csaba.apagyi/cognito-via-oauth2-in-nestjs-outsourcing-authentication-without-vendor-lock-in-ce908518f547)), and JWT strategy for REST and GraphQL
-- Docker setup
-- Typescript, ESLint
-- CI via GitHub Actions
-- Running tasks (e.g. DB seeding) via [nestjs-console](https://github.com/Pop-Code/nestjs-console)
-- Unit and integration testing via Jest
-- Heroku deployment setup
-- Google Analytics 4
-
-## Usage
-
-The deployments below are probably in sleep mode and will take a minute to come online when you open them.
-
-### Production
-
-https://nestjs-starter-production.herokuapp.com/
-
-### Staging
-
-https://nestjs-starter-staging.herokuapp.com/
-
-### Dev
-
-```sh
-cp .env.example .env
-docker-compose up
-docker-compose exec web yarn lint
-docker-compose exec web yarn test
-docker-compose exec web yarn test:request
-docker-compose exec web yarn build
-docker run -it -v $PWD:/e2e -w /e2e --network="host" --entrypoint=cypress cypress/included:12.2.0 run
+```bash
+$ npm install
 ```
 
-## Functionality
+## Running the app
 
-REST endpoint via Nest
-- http://localhost:3000/
+```bash
+# development
+$ npm run start
 
-JWT-protected REST endpoint via Nest
-- http://localhost:3000/private
+# watch mode
+$ npm run start:dev
 
-GraphQL playground (`query WhoAmI` is JWT-protected)
-- http://localhost:3000/graphql
-```qgl
-query Public {
-  things {
-    id
-    name
-  }
-
-  users {
-    id
-    provider
-  }
-}
-
-# Add Header: { "Authorization": "Bearer <token>" }
-query Private {
-  whoAmI {
-    id,
-    provider,
-    providerId,
-    username,
-    name
-  }
-
-  orders {
-    id
-
-    alias
-    thing {
-      name
-    }
-  }
-}
-
-mutation createOrder {
-  createOrder(alias: "myname", thingName: "this is a thing you can order") {
-    id
-    alias
-  }
-}
+# production mode
+$ npm run start:prod
 ```
 
-Cognito auth (redirects to hosted Cognito UI)
-- http://localhost:3000/auth/cognito
+## Test
 
-Google auth
-- http://localhost:3000/auth/google
+```bash
+# unit tests
+$ npm run test
 
-Next.js page
-- http://localhost:3000/home
+# e2e tests
+$ npm run test:e2e
 
-JWT-protected Next.js page
-- http://localhost:3000/profile
-
-### Useful commands
-
-Nest CLI:
-```
-docker-compose exec web yarn nest -- --help
+# test coverage
+$ npm run test:cov
 ```
 
-TypeORM CLI:
-```
-docker-compose exec web yarn typeorm -- --help
-```
+## Support
 
-## Resources
+Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
 
-- https://github.com/jmcdo29/testing-nestjs
+## Stay in touch
+
+- Author - [Kamil Myśliwiec](https://twitter.com/kammysliwiec)
+- Website - [https://nestjs.com](https://nestjs.com/)
+- Twitter - [@nestframework](https://twitter.com/nestframework)
+
+## License
+
+  Nest is [MIT licensed](https://github.com/nestjs/nest/blob/master/LICENSE).

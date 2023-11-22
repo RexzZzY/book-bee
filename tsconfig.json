@@ -6,14 +6,11 @@
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
     "allowSyntheticDefaultImports": true,
-    "target": "es2017",
+    "target": "ES2021",
     "sourceMap": true,
     "outDir": "./dist",
     "baseUrl": "./",
-    "incremental": true
-  },
-  "ts-node": {
-    "files": true
-  },
-  "include": ["src/server", "test", "ormconfig.ts", "jest.config.ts"],
+    "incremental": true,
+    "skipLibCheck": true
+  }
 }
