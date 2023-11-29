@@ -84,7 +84,7 @@
       <div class='w-full h-16 flex items-center p-2'>
 
         <div class='self-start flex-1'>
-          <h1 class='text-lg'>Add Books</h1>
+          <h1 class='text-lg'>Add Book</h1>
           <p class='text-xs text-gray-400'>Add a book to the collection</p>
         </div>
 
@@ -95,11 +95,12 @@
       >
 
         <div class='w-3/4'>
-          <form class='grid grid-cols-1 gap-3'>
+          <form action='/books' method='post' class='grid grid-cols-1 gap-3'>
             <label class='block'>
               <span class='text-gray-600'>Register No</span>
               <input
                 type='number'
+                name="registerNumber"
                 class='mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50'
               />
             </label>
@@ -107,6 +108,7 @@
               <span class='text-gray-600'>Title</span>
               <input
                 type='text'
+                name="title"
                 class='mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50'
               />
             </label>
@@ -114,6 +116,7 @@
               <span class='text-gray-600'>Author</span>
               <input
                 type='text'
+                name="author"
                 class='mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50'
               />
             </label>
@@ -121,6 +124,7 @@
               <span class='text-gray-600'>Code Number</span>
               <input
                 type='text'
+                name="codeNumber"
                 class='mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50'
               />
             </label>
@@ -128,6 +132,7 @@
               <span class='text-gray-600'>Register Date</span>
               <input
                 type='date'
+                name="registeredDate"
                 class='mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50'
               />
             </label>
@@ -136,6 +141,7 @@
               <span class='text-gray-600'>ISBN</span>
               <input
                 type='text'
+                name="ISBN"
                 class='mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50'
               />
             </label>
@@ -143,6 +149,7 @@
               <span class='text-gray-600'>Publisher</span>
               <input
                 type='text'
+                name="publisher"
                 class='mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50'
               />
             </label>
@@ -150,11 +157,12 @@
               <span class='text-gray-600'>Published Date</span>
               <input
                 type='date'
+                name="publishedDate"
                 class='mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50'
               />
             </label>
 
-            <button
+            <button type="submit"
               class='w-full rounded-lg bg-gray-200 hover:bg-gray-100 p-2 mt-2'
             >Add Book</button>
 

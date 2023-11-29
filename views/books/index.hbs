@@ -129,87 +129,38 @@
               </tr>
             </thead>
             <tbody>
-              <tr class='bg-white border-b'>
-                <th
-                  scope='row'
-                  class='px-6 py-4 font-medium text-gray-900 whitespace-nowrap'
-                >
-                  Apple MacBook Pro 17"
-                </th>
-                <td class='px-6 py-4'>
-                  Silver
-                </td>
-                <td class='px-6 py-4'>
-                  Laptop
-                </td>
-                <td class='px-6 py-4'>
-                  $2999
-                </td>
-                <td class='px-6 py-4'>
-                  <i
-                    data-lucide='pencil'
-                    class='w-4 inline-block mr-2 hover:text-green-500'
-                  ></i>
-                  <i
-                    data-lucide='trash'
-                    class='w-4 inline-block mr-2 hover:text-red-500'
-                  ></i>
-                </td>
-              </tr>
-              <tr class='bg-white border-b'>
-                <th
-                  scope='row'
-                  class='px-6 py-4 font-medium text-gray-900 whitespace-nowrap'
-                >
-                  Microsoft Surface Pro
-                </th>
-                <td class='px-6 py-4'>
-                  White
-                </td>
-                <td class='px-6 py-4'>
-                  Laptop PC
-                </td>
-                <td class='px-6 py-4'>
-                  $1999
-                </td>
-                <td class='px-6 py-4'>
-                  <i
-                    data-lucide='pencil'
-                    class='w-4 inline-block mr-2 hover:text-green-500'
-                  ></i>
-                  <i
-                    data-lucide='trash'
-                    class='w-4 inline-block mr-2 hover:text-red-500'
-                  ></i>
-                </td>
-              </tr>
-              <tr class='bg-white'>
-                <th
-                  scope='row'
-                  class='px-6 py-4 font-medium text-gray-900 whitespace-nowrap'
-                >
-                  Magic Mouse 2
-                </th>
-                <td class='px-6 py-4'>
-                  Black
-                </td>
-                <td class='px-6 py-4'>
-                  Accessories
-                </td>
-                <td class='px-6 py-4'>
-                  $99
-                </td>
-                <td class='px-6 py-4'>
-                  <i
-                    data-lucide='pencil'
-                    class='w-4 inline-block mr-2 hover:text-green-500'
-                  ></i>
-                  <i
-                    data-lucide='trash'
-                    class='w-4 inline-block mr-2 hover:text-red-500'
-                  ></i>
-                </td>
-              </tr>
+              {{#each books}}
+                <tr class='bg-white'>
+                  <th
+                    scope='row'
+                    class='px-6 py-4 font-medium text-gray-900 whitespace-nowrap'
+                  >
+                    {{registerNumber}}
+                  </th>
+                  <td class='px-6 py-4'>
+                    {{title}}
+                  </td>
+                  <td class='px-6 py-4'>
+                    {{author}}
+                  </td>
+                  <td class='px-6 py-4'>
+                    {{publisher}}
+                  </td>
+                  <td class='px-6 py-4'>
+                    <a href='/books/{{id}}/edit'><i
+                        data-lucide='pencil'
+                        class='w-4 inline-block mr-2 hover:text-green-500'
+                      ></i></a>
+                    <a href='/books/{{id}}/delete'>
+                      <i
+                        data-lucide='trash'
+                        class='w-4 inline-block mr-2 hover:text-red-500'
+                      ></i>
+                    </a>
+                  </td>
+                </tr>
+              {{/each}}
+
             </tbody>
           </table>
         </div>

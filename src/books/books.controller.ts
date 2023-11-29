@@ -7,6 +7,9 @@ import {
   Param,
   Delete,
   Render,
+  Redirect,
+  ClassSerializerInterceptor,
+  UseInterceptors,
 } from '@nestjs/common';
 import { BooksService } from './books.service';
 import { CreateBookDto } from './dto/create-book.dto';
@@ -17,10 +20,11 @@ export class BooksController {
   constructor(private readonly booksService: BooksService) {}
 
   // index
-  @Get()
+  @Get('')
   @Render('books/index')
-  findAll() {
-    return { message: this.booksService.findAll() };
+  async findAll() {
+    const allBooks = await this.booksService.findAll();
+    return { books: allBooks };
   }
 
   // create
@@ -32,10 +36,10 @@ export class BooksController {
 
   // store
   @Post()
-  @Render('books/index') // render index with success message
-  create(@Body() createBookDto: CreateBookDto) {
-    console.log(createBookDto);
-    return this.booksService.create(createBookDto);
+  @Redirect('/books')
+  async create(@Body() createBookDto: CreateBookDto) {
+    // create new book
+    await this.booksService.create(createBookDto);
   }
 
   // show
@@ -47,15 +51,26 @@ export class BooksController {
   }
 
   // edit
+  @UseInterceptors(ClassSerializerInterceptor)
   @Get(':id/edit')
   @Render('books/edit')
-  editOne(@Param('id') id: string) {
-    // return this.booksService.findOne(+id);
-    return { id: id };
+  async editOne(@Param('id') id: string) {
+    const book = await this.booksService.findOne(+id);
+    console.log(book.publishedDate);
+
+    return { book };
+  }
+
+  // delete
+  @Get(':id/delete')
+  @Redirect('/books')
+  async removeOne(@Param('id') id: string) {
+    await this.booksService.remove(+id);
   }
 
   // update
   @Patch(':id')
+  @Redirect('/books')
   update(@Param('id') id: string, @Body() updateBookDto: UpdateBookDto) {
     return this.booksService.update(+id, updateBookDto);
   }
