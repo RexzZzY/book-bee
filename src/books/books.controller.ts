@@ -69,15 +69,9 @@ export class BooksController {
   }
 
   // update
-  @Patch(':id')
+  @Post(':id/update')
   @Redirect('/books')
   update(@Param('id') id: string, @Body() updateBookDto: UpdateBookDto) {
     return this.booksService.update(+id, updateBookDto);
-  }
-
-  // destroy
-  @Delete(':id')
-  remove(@Param('id') id: string) {
-    return this.booksService.remove(+id);
   }
 }

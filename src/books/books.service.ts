@@ -38,7 +38,18 @@ export class BooksService {
   }
 
   update(id: number, updateBookDto: UpdateBookDto) {
-    return `This action updates a #${id} book`;
+    const book = new Book();
+
+    book.title = updateBookDto.title;
+    book.registerNumber = updateBookDto.registerNumber;
+    book.author = updateBookDto.author;
+    book.codeNumber = updateBookDto.codeNumber;
+    book.ISBN = updateBookDto.ISBN;
+    book.publishedDate = updateBookDto.publishedDate;
+    book.publisher = updateBookDto.publisher;
+    book.registeredDate = updateBookDto.registeredDate;
+
+    return this.booksrepository.update(id, book);
   }
 
   async remove(id: number) {
