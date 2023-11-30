@@ -10,9 +10,9 @@ import { BookIssuesModule } from './book-issues/book-issues.module';
 @Module({
   imports: [
     BooksModule,
-    TypeOrmModule.forRoot(AppDataSourceOptions),
     StudentsModule,
     BookIssuesModule,
+    TypeOrmModule.forRoot(AppDataSourceOptions),
   ],
   controllers: [AppController],
   providers: [AppService],

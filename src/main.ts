@@ -15,6 +15,10 @@ async function bootstrap() {
     return format;
   });
 
+  handlebars.registerHelper('ifEquals', function (arg1, arg2, options) {
+    return arg1 == arg2 ? options.fn(this) : options.inverse(this);
+  });
+
   await app.listen(3000);
 }
 bootstrap();
