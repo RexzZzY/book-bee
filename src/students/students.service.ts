@@ -3,7 +3,7 @@ import { CreateStudentDto } from './dto/create-student.dto';
 import { UpdateStudentDto } from './dto/update-student.dto';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Student } from './entities/student.entity';
-import { Repository } from 'typeorm';
+import { ILike, Repository } from 'typeorm';
 
 @Injectable()
 export class StudentsService {
@@ -24,6 +24,17 @@ export class StudentsService {
 
   async findAll() {
     return await this.repository.find();
+  }
+
+  async findByKeyword(keyword: string) {
+    const students = await this.repository.find({
+      where: [
+        { indexNumber: ILike(`${keyword}%`) },
+        { name: ILike(`%${keyword}%`) },
+      ],
+    });
+
+    return students;
   }
 
   async findOne(id: number) {

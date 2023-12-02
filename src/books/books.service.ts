@@ -3,7 +3,8 @@ import { CreateBookDto } from './dto/create-book.dto';
 import { UpdateBookDto } from './dto/update-book.dto';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Book } from './entities/book.entity';
-import { Repository } from 'typeorm';
+import { ILike, IsNull, Repository } from 'typeorm';
+import { BookIssue } from 'src/book-issues/entities/book-issue.entity';
 
 @Injectable()
 export class BooksService {
@@ -30,6 +31,26 @@ export class BooksService {
 
   async findAll() {
     const books = await this.booksrepository.find();
+    return books;
+  }
+
+  // { registerNumber: ILike(Number.parseInt(keyword) | 0) },
+  //       { title: ILike(`${keyword}%`) },
+
+  async findByKeyword(keyword: string) {
+    const books = await this.booksrepository.find({
+      relations: {
+        bookIssue: true,
+      },
+      where: [
+        { bookIssue: { id: IsNull() }, title: ILike(`${keyword}%`) },
+        {
+          bookIssue: { id: IsNull() },
+          registerNumber: ILike(Number.parseInt(keyword) | 0),
+        },
+      ],
+    });
+
     return books;
   }
 

@@ -1,1 +1,5 @@
-export class CreateBookIssueDto {}
+export class CreateBookIssueDto {
+  bookId: string;
+  studentId: string;
+  returnDate: Date;
+}

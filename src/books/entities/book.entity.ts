@@ -1,5 +1,6 @@
 import { Transform } from 'class-transformer';
-import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
+import { BookIssue } from 'src/book-issues/entities/book-issue.entity';
+import { Column, Entity, OneToOne, PrimaryGeneratedColumn } from 'typeorm';
 
 @Entity()
 export class Book {
@@ -35,4 +36,7 @@ export class Book {
     toPlainOnly: true,
   })
   publishedDate: Date;
+
+  @OneToOne(() => BookIssue, (bookIssue) => bookIssue.book)
+  bookIssue: BookIssue;
 }
