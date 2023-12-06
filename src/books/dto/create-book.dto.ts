@@ -8,7 +8,7 @@ export class CreateBookDto {
   registeredDate: Date;
   ISBN: string;
   publisher: string;
-  publishedDate: Date;
+  publishedYear: string;
 
   public toEntity() {
     const book = new Book();
@@ -18,7 +18,7 @@ export class CreateBookDto {
     book.author = this.author;
     book.codeNumber = this.codeNumber;
     book.ISBN = this.ISBN;
-    book.publishedDate = this.publishedDate;
+    book.publishedYear = this.publishedYear;
     book.publisher = this.publisher;
     book.registeredDate = this.registeredDate;
 

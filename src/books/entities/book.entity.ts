@@ -32,10 +32,7 @@ export class Book {
   publisher: string;
 
   @Column()
-  @Transform(({ value }) => (value as Date).toISOString().split('T')[0], {
-    toPlainOnly: true,
-  })
-  publishedDate: Date;
+  publishedYear: string;
 
   @OneToOne(() => BookIssue, (bookIssue) => bookIssue.book)
   bookIssue: BookIssue;

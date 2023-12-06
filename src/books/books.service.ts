@@ -20,7 +20,7 @@ export class BooksService {
     book.author = createBookDto.author;
     book.codeNumber = createBookDto.codeNumber;
     book.ISBN = createBookDto.ISBN;
-    book.publishedDate = createBookDto.publishedDate;
+    book.publishedYear = createBookDto.publishedYear;
     book.publisher = createBookDto.publisher;
     book.registeredDate = createBookDto.registeredDate;
 
@@ -29,13 +29,17 @@ export class BooksService {
     return { message: 'book Added Successfully' };
   }
 
-  async findAll() {
-    const books = await this.booksrepository.find();
+  async findAll(offset: number, limit: number) {
+    const books = await this.booksrepository.findAndCount({
+      order: {
+        registerNumber: { direction: 'ASC' },
+      },
+      skip: offset,
+      take: limit,
+    });
+
     return books;
   }
-
-  // { registerNumber: ILike(Number.parseInt(keyword) | 0) },
-  //       { title: ILike(`${keyword}%`) },
 
   async findByKeyword(keyword: string) {
     const books = await this.booksrepository.find({
@@ -66,7 +70,7 @@ export class BooksService {
     book.author = updateBookDto.author;
     book.codeNumber = updateBookDto.codeNumber;
     book.ISBN = updateBookDto.ISBN;
-    book.publishedDate = updateBookDto.publishedDate;
+    book.publishedYear = updateBookDto.publishedYear;
     book.publisher = updateBookDto.publisher;
     book.registeredDate = updateBookDto.registeredDate;
 

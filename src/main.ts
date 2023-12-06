@@ -2,7 +2,7 @@ import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
 import { NestExpressApplication } from '@nestjs/platform-express';
 import { join } from 'path';
-import { handlebars } from 'hbs';
+import registerHandlebarHelpers from './utils/handlebar.helper';
 
 async function bootstrap() {
   const app = await NestFactory.create<NestExpressApplication>(AppModule);
@@ -11,13 +11,7 @@ async function bootstrap() {
   app.setBaseViewsDir(join(__dirname, '..', 'views'));
   app.setViewEngine('hbs');
 
-  handlebars.registerHelper('formatTime', function (date, format) {
-    return format;
-  });
-
-  handlebars.registerHelper('ifEquals', function (arg1, arg2, options) {
-    return arg1 == arg2 ? options.fn(this) : options.inverse(this);
-  });
+  registerHandlebarHelpers();
 
   await app.listen(3000);
 }

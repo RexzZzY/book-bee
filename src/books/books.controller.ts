@@ -3,13 +3,12 @@ import {
   Get,
   Post,
   Body,
-  Patch,
   Param,
-  Delete,
   Render,
   Redirect,
   ClassSerializerInterceptor,
   UseInterceptors,
+  Query,
 } from '@nestjs/common';
 import { BooksService } from './books.service';
 import { CreateBookDto } from './dto/create-book.dto';
@@ -22,9 +21,22 @@ export class BooksController {
   // index
   @Get('')
   @Render('books/index')
-  async findAll() {
-    const allBooks = await this.booksService.findAll();
-    return { books: allBooks };
+  async findAll(@Query('page') page = 1) {
+    const itemsPerPage = 20;
+    const offset = (page - 1) * itemsPerPage;
+
+    const [allBooks, count] = await this.booksService.findAll(
+      offset,
+      itemsPerPage,
+    );
+
+    return {
+      items: allBooks,
+      pagination: {
+        totalPages: Math.ceil(count / itemsPerPage),
+        currentPage: +page,
+      },
+    };
   }
 
   // create
@@ -56,7 +68,7 @@ export class BooksController {
   @Render('books/edit')
   async editOne(@Param('id') id: string) {
     const book = await this.booksService.findOne(+id);
-    console.log(book.publishedDate);
+    console.log(book.publishedYear);
 
     return { book };
   }
