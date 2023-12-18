@@ -3,9 +3,10 @@ import { CreateBookIssueDto } from './dto/create-book-issue.dto';
 import { UpdateBookIssueDto } from './dto/update-book-issue.dto';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Book } from 'src/books/entities/book.entity';
-import { ILike, Repository } from 'typeorm';
+import { Repository } from 'typeorm';
 import { Student } from 'src/students/entities/student.entity';
 import { BookIssue } from './entities/book-issue.entity';
+import { GetBookIssueDto } from './dto/get-book-issue.dto';
 
 @Injectable()
 export class BookIssuesService {
@@ -34,35 +35,43 @@ export class BookIssuesService {
     return await this.bookIssueRepository.save(bookIssue);
   }
 
-  async findAll() {
-    return await this.bookIssueRepository.find();
-  }
-
-  async findByKeyword(keyword: string) {
-    const IssuesbookIds = await this.bookIssueRepository.find({
-      select: {
-        book: {
-          id: true,
-        },
+  async findAll(
+    offset: number,
+    limit: number,
+  ): Promise<[GetBookIssueDto[], number]> {
+    const [bookIssues, count] = await this.bookIssueRepository.findAndCount({
+      order: {
+        issuedOn: 'DESC',
       },
-      relations: {
-        book: true,
-      },
+      skip: offset,
+      take: limit,
     });
 
-    console.log(IssuesbookIds);
+    const bookIssueDtos: GetBookIssueDto[] = [];
 
-    const books = await this.bookRepository.find({
-      where: [
-        { registerNumber: ILike(Number.parseInt(keyword) | 0) },
-        { title: ILike(`${keyword}%`) },
-      ],
-      // relations: {
-      //   bookIssue: true,
-      // },
+    bookIssues.forEach((bookIssue) => {
+      const bookIssueDto = new GetBookIssueDto();
+      bookIssueDto.id = bookIssue.id;
+      bookIssueDto.book = bookIssue.book;
+      bookIssueDto.issuedOn = bookIssue.issuedOn;
+      bookIssueDto.returnDate = bookIssue.returnDate;
+      bookIssueDto.returned = bookIssue.returned;
+      bookIssueDto.student = bookIssue.student;
+
+      if (bookIssue.returned) {
+        bookIssueDto.status = 'RETURNED';
+      } else {
+        if (new Date() > bookIssue.returnDate) {
+          bookIssueDto.status = 'DUE';
+        } else {
+          bookIssueDto.status = 'ISSUED';
+        }
+      }
+
+      bookIssueDtos.push(bookIssueDto);
     });
 
-    return books;
+    return [bookIssueDtos, count];
   }
 
   findOne(id: number) {
@@ -70,10 +79,10 @@ export class BookIssuesService {
   }
 
   update(id: number, updateBookIssueDto: UpdateBookIssueDto) {
-    return `This action updates a #${id} bookIssue`;
+    return this.bookIssueRepository.update(id, updateBookIssueDto);
   }
 
   remove(id: number) {
-    return `This action removes a #${id} bookIssue`;
+    return this.bookIssueRepository.delete({ id: id });
   }
 }

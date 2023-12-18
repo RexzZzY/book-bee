@@ -1,86 +1,8 @@
 <div class='container w-fit md:w-auto max-w-5xl mx-auto p-4'>
 
   <div class='grid grid-cols-4 grid-rows-6'>
-    <div class='col-span-1 row-start-1 row-span-5'>
-      <div class='w-full border border-slate-200 rounded-lg space-y-2 p-4 mt-2'>
-        <div class=''>
-          <div class='section-1'>
-            <div class='pb-2 mb-4 border-b-[1px] border-gray-200'>
-              <p class='text-base'>Dashboard</p>
-            </div>
-            <div
-              class='py-1 px-1 hover:bg-gray-200 hover:cursor-pointer rounded-md'
-            ><p class='text-black/70 hover:text-black/100'><i
-                  data-lucide='book-open-text'
-                  class='w-4 inline-block mr-2'
-                ></i>Manage Books</p></div>
-            <div
-              class='py-1 px-1 hover:bg-gray-200 hover:cursor-pointer rounded-md'
-            ><p class='text-black/70 hover:text-black/100'><i
-                  data-lucide='users'
-                  class='w-4 inline-block mr-2'
-                ></i>Manage Students</p></div>
-            <div
-              class='py-1 px-1 hover:bg-gray-200 hover:cursor-pointer rounded-md'
-            ><p class='text-black/70 hover:text-black/100'><i
-                  data-lucide='scroll-text'
-                  class='w-4 inline-block mr-2'
-                ></i>Manage Book Issue</p></div>
 
-          </div>
-
-          <div class='section-2 mt-4'>
-            <div class='pb-2 mb-4 border-b-[1px] border-gray-200'>
-              <p class='text-base'>Categories</p>
-            </div>
-            <div
-              class='py-1 px-1 hover:bg-gray-200 hover:cursor-pointer rounded-md'
-            ><p class='text-black/70 hover:text-black/100 text-base'><i
-                  data-lucide='circle'
-                  class='w-4 h-4 inline-block mr-2 relative top-[-1px]'
-                ></i>Non-fiction</p></div>
-            <div
-              class='py-1 px-1 hover:bg-gray-200 hover:cursor-pointer rounded-md'
-            ><p class='text-black/70 hover:text-black/100'><i
-                  data-lucide='circle'
-                  class='w-4 h-4 inline-block mr-2 relative top-[-1px]'
-                ></i>Fiction</p></div>
-            <div
-              class='py-1 px-1 hover:bg-gray-200 hover:cursor-pointer rounded-md'
-            ><p class='text-black/70 hover:text-black/100'><i
-                  data-lucide='circle'
-                  class='w-4 h-4 inline-block mr-2 relative top-[-1px]'
-                ></i>Poetry</p></div>
-            <div
-              class='py-1 px-1 hover:bg-gray-200 hover:cursor-pointer rounded-md'
-            ><p class='text-black/70 hover:text-black/100'><i
-                  data-lucide='circle'
-                  class='w-4 h-4 inline-block mr-2 relative top-[-1px]'
-                ></i>Memoir</p></div>
-            <div
-              class='py-1 px-1 hover:bg-gray-200 hover:cursor-pointer rounded-md'
-            ><p class='text-black/70 hover:text-black/100'><i
-                  data-lucide='circle'
-                  class='w-4 h-4 inline-block mr-2 relative top-[-1px]'
-                ></i>Romance</p></div>
-            <div
-              class='py-1 px-1 hover:bg-gray-200 hover:cursor-pointer rounded-md'
-            ><p class='text-black/70 hover:text-black/100'><i
-                  data-lucide='circle'
-                  class='w-4 h-4 inline-block mr-2 relative top-[-1px]'
-                ></i>Horror</p></div>
-
-          </div>
-
-        </div>
-      </div>
-    </div>
-
-    <div
-      class='flex flex-col md:flex-row md:flex-wrap md:content-start col-span-3 row-start-1 row-span-5'
-    >
-
-      {{! form header }}
+    <div class='flex flex-col md:flex-row md:flex-wrap md:content-start col-span-full row-start-1 row-span-5'>
       <div class='w-full h-16 flex items-center p-2'>
 
         <div class='self-start flex-1'>
@@ -89,89 +11,52 @@
         </div>
 
       </div>
-      <div
-        class='w-full flex justify-center mt-2 border border-gray-400 rounded-md p-4 ml-2'
-      >
+      <div class='w-full flex justify-center mt-2 border border-gray-400 rounded-md p-4 ml-2'>
         <div class='w-3/4'>
           <form action='/books/{{ book.id }}/update' method='post' class='grid grid-cols-1 gap-3'>
             <label class='block'>
               <span class='text-gray-600'>Register No</span>
-              <input
-                type='number'
-                value='{{book.registerNumber}}'
-                name='registerNumber'
-                class='mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50'
-              />
+              <input type='number' value='{{book.registerNumber}}' name='registerNumber'
+                class='mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50' />
             </label>
             <label class='block'>
               <span class='text-gray-600'>Title</span>
-              <input
-                value='{{book.title}}'
-                type='text'
-                name='title'
-                class='mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50'
-              />
+              <input value='{{book.title}}' type='text' name='title'
+                class='mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50' />
             </label>
             <label class='block'>
               <span class='text-gray-600'>Author</span>
-              <input
-                value='{{book.author}}'
-                type='text'
-                name='author'
-                class='mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50'
-              />
+              <input value='{{book.author}}' type='text' name='author'
+                class='mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50' />
             </label>
             <label class='block'>
               <span class='text-gray-600'>Code Number</span>
-              <input
-                value='{{book.codeNumber}}'
-                type='text'
-                name='codeNumber'
-                class='mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50'
-              />
+              <input value='{{book.codeNumber}}' type='text' name='codeNumber'
+                class='mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50' />
             </label>
             <label class='block'>
               <span class='text-gray-600'>Register Date</span>
-              <input
-                value='{{book.registeredDate}}'
-                type='date'
-                name='registeredDate'
-                class='mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50'
-              />
+              <input value='{{book.registeredDate}}' type='date' name='registeredDate'
+                class='mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50' />
             </label>
 
             <label class='block'>
               <span class='text-gray-600'>ISBN</span>
-              <input
-                value='{{book.ISBN}}'
-                type='text'
-                name='ISBN'
-                class='mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50'
-              />
+              <input value='{{book.ISBN}}' type='text' name='ISBN'
+                class='mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50' />
             </label>
             <label class='block'>
               <span class='text-gray-600'>Publisher</span>
-              <input
-                type='text'
-                value='{{book.publisher}}'
-                name='publisher'
-                class='mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50'
-              />
+              <input type='text' value='{{book.publisher}}' name='publisher'
+                class='mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50' />
             </label>
             <label class='block'>
               <span class='text-gray-600'>Published Year</span>
-              <input
-                type='text'
-                value='{{book.publishedYear}}'
-                name='publishedDate'
-                class='mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50'
-              />
+              <input type='text' value='{{book.publishedYear}}' name='publishedDate'
+                class='mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50' />
             </label>
 
-            <button
-              type='submit'
-              class='w-full rounded-lg bg-gray-200 hover:bg-gray-100 p-2 mt-2'
-            >Add Book</button>
+            <button type='submit' class='w-full rounded-lg bg-gray-200 hover:bg-gray-100 p-2 mt-2'>Add Book</button>
 
           </form>
         </div>

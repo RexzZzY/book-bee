@@ -8,6 +8,7 @@ import {
   Delete,
   Render,
   Redirect,
+  Query,
 } from '@nestjs/common';
 import { StudentsService } from './students.service';
 import { CreateStudentDto } from './dto/create-student.dto';
@@ -19,9 +20,22 @@ export class StudentsController {
 
   @Get()
   @Render('students/index')
-  async getIndexpage() {
-    const allStudents = await this.studentsService.findAll();
-    return { students: allStudents };
+  async getIndexpage(@Query('page') page = 1) {
+    const itemsPerPage = 20;
+    const offset = (page - 1) * itemsPerPage;
+
+    const [allStudents, count] = await this.studentsService.findAll(
+      offset,
+      itemsPerPage,
+    );
+
+    return {
+      items: allStudents,
+      pagination: {
+        totalPages: Math.ceil(count / itemsPerPage),
+        currentPage: +page,
+      },
+    };
   }
 
   @Get('create')

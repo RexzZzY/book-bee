@@ -22,8 +22,14 @@ export class StudentsService {
     return await this.repository.save(student);
   }
 
-  async findAll() {
-    return await this.repository.find();
+  async findAll(offset: number, limit: number) {
+    return await this.repository.findAndCount({
+      skip: offset,
+      take: limit,
+      order: {
+        indexNumber: 'ASC',
+      },
+    });
   }
 
   async findByKeyword(keyword: string) {

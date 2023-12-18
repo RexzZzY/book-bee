@@ -26,7 +26,7 @@ export class StudentsRestController {
     students.forEach((student) => {
       studentsResponse.push({
         id: student.id,
-        text: student.name,
+        text: student.name + `(${student.indexNumber})`,
       });
     });
 

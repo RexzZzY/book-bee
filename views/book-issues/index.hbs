@@ -1,62 +1,26 @@
 <div class='container w-fit md:w-auto max-w-5xl mx-auto p-4'>
 
-  <div class='grid grid-cols-4 grid-rows-6'>
-    {{!-- <div class='col-span-1 row-start-1 row-span-5'>
-      <div class='w-full border border-slate-200 rounded-lg space-y-2 p-4 mt-2'>
-        <div class=''>
-          <div class='section-1'>
-            <div class='pb-2 mb-4 border-b-[1px] border-gray-200'>
-              <p class='text-base'>Dashboard</p>
-            </div>
-            <div class='py-1 px-1 hover:bg-gray-200 hover:cursor-pointer rounded-md'>
-              <p class='text-black/70 hover:text-black/100'><i data-lucide='book-open-text'
-                  class='w-4 inline-block mr-2'></i>Manage Books</p>
-            </div>
-            <div class='py-1 px-1 hover:bg-gray-200 hover:cursor-pointer rounded-md'>
-              <p class='text-black/70 hover:text-black/100'><i data-lucide='users'
-                  class='w-4 inline-block mr-2'></i>Manage Students</p>
-            </div>
-            <div class='py-1 px-1 hover:bg-gray-200 hover:cursor-pointer rounded-md'>
-              <p class='text-black/70 hover:text-black/100'><i data-lucide='scroll-text'
-                  class='w-4 inline-block mr-2'></i>Manage Book Issue</p>
-            </div>
-
-          </div>
-
-          <div class='section-2 mt-4'>
-            <div class='pb-2 mb-4 border-b-[1px] border-gray-200'>
-              <p class='text-base'>Categories</p>
-            </div>
-            <div class='py-1 px-1 hover:bg-gray-200 hover:cursor-pointer rounded-md'>
-              <p class='text-black/70 hover:text-black/100 text-base'><i data-lucide='circle'
-                  class='w-4 h-4 inline-block mr-2 relative top-[-1px]'></i>Non-fiction</p>
-            </div>
-            <div class='py-1 px-1 hover:bg-gray-200 hover:cursor-pointer rounded-md'>
-              <p class='text-black/70 hover:text-black/100'><i data-lucide='circle'
-                  class='w-4 h-4 inline-block mr-2 relative top-[-1px]'></i>Fiction</p>
-            </div>
-            <div class='py-1 px-1 hover:bg-gray-200 hover:cursor-pointer rounded-md'>
-              <p class='text-black/70 hover:text-black/100'><i data-lucide='circle'
-                  class='w-4 h-4 inline-block mr-2 relative top-[-1px]'></i>Poetry</p>
-            </div>
-            <div class='py-1 px-1 hover:bg-gray-200 hover:cursor-pointer rounded-md'>
-              <p class='text-black/70 hover:text-black/100'><i data-lucide='circle'
-                  class='w-4 h-4 inline-block mr-2 relative top-[-1px]'></i>Memoir</p>
-            </div>
-            <div class='py-1 px-1 hover:bg-gray-200 hover:cursor-pointer rounded-md'>
-              <p class='text-black/70 hover:text-black/100'><i data-lucide='circle'
-                  class='w-4 h-4 inline-block mr-2 relative top-[-1px]'></i>Romance</p>
-            </div>
-            <div class='py-1 px-1 hover:bg-gray-200 hover:cursor-pointer rounded-md'>
-              <p class='text-black/70 hover:text-black/100'><i data-lucide='circle'
-                  class='w-4 h-4 inline-block mr-2 relative top-[-1px]'></i>Horror</p>
-            </div>
-
-          </div>
-
+  <div class='w-full'>
+    <div class='w-full border border-slate-200 rounded-lg space-y-2 p-4 mt-2'>
+      <div class='section-1 flex flex-row grow'>
+        <div class='py-1 px-1 hover:bg-gray-200 hover:cursor-pointer rounded-md w-auto basis-1/3'>
+          <a href="/books" class='text-black/70 hover:text-black/100'><i data-lucide='book-open-text'
+              class='w-4 inline-block mr-2'></i>Manage Books</a>
         </div>
+        <div class='py-1 px-1 hover:bg-gray-200 hover:cursor-pointer rounded-md w-auto basis-1/3'>
+          <a href="/students" class='text-black/70 hover:text-black/100'><i data-lucide='users'
+              class='w-4 inline-block mr-2'></i>Manage Students</a>
+        </div>
+        <div class='py-1 px-1 hover:bg-gray-200 hover:cursor-pointer rounded-md w-auto basis-1/3'>
+          <a href="/book-issues" class='text-black/70 hover:text-black/100'><i data-lucide='scroll-text'
+              class='w-4 inline-block mr-2'></i>Manage Book Issue</a>
+        </div>
+
       </div>
-    </div> --}}
+    </div>
+  </div>
+
+  <div class='grid grid-cols-4 grid-rows-6'>
 
     <div class='flex flex-col md:flex-row md:flex-wrap md:content-start col-span-full row-start-1 row-span-5'>
 
@@ -81,6 +45,13 @@
 
       </div>
 
+      <div class="w-full p-2">
+        <button type="button"
+          class="text-gray-900 bg-gradient-to-r from-teal-200 to-lime-200 hover:bg-gradient-to-l hover:from-teal-200 hover:to-lime-200 focus:ring-4 focus:outline-none focus:ring-lime-200 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2">
+          <a href="/book-issues/create"> Issue Book </a>
+        </button>
+      </div>
+
       <div class='w-full p-2'>
         <div class='relative overflow-x-auto'>
           <table class='w-full text-sm text-left rtl:text-right text-gray-500'>
@@ -99,12 +70,15 @@
                   Student Index
                 </th>
                 <th scope='col' class='px-6 py-3'>
+                  Status
+                </th>
+                <th scope='col' class='px-6 py-3'>
                   Actions
                 </th>
               </tr>
             </thead>
             <tbody>
-              {{#each bookIssues}}
+              {{#each items}}
               <tr class='bg-white'>
                 <th scope='row' class='px-6 py-4 font-medium text-gray-900 whitespace-nowrap'>
                   {{id}}
@@ -119,9 +93,23 @@
                   {{student.indexNumber}}
                 </td>
                 <td class='px-6 py-4'>
-                  <a href='/students/{{id}}/edit'><i data-lucide='pencil'
+                  <span class="
+                    {{#ifEquals status 'ISSUED'}}
+                    bg-blue-100 text-blue-800
+                    {{/ifEquals}}
+                    {{#ifEquals status 'DUE'}}
+                    bg-red-100 text-red-800
+                    {{/ifEquals}}
+                    {{#ifEquals status 'RETURNED'}}
+                    bg-green-100 text-green-800
+                    {{/ifEquals}}
+                    text-xs font-medium me-2 px-2.5 py-0.5 rounded">{{status}}</span>
+                </td>
+                <td class='px-6 py-4'>
+                  <a href=''><i data-lucide='info' class='w-4 inline-block mr-2 hover:text-blue-500'></i></a>
+                  <a href='/book-issues/{{id}}/return'><i data-lucide='undo-2'
                       class='w-4 inline-block mr-2 hover:text-green-500'></i></a>
-                  <a href='/students/{{id}}/delete'>
+                  <a href='/book-issues/{{id}}/delete'>
                     <i data-lucide='trash' class='w-4 inline-block mr-2 hover:text-red-500'></i>
                   </a>
                 </td>
@@ -134,209 +122,47 @@
 
       </div>
 
-      {{! <div class='p-2 basis-full md:basis-1/2'>
-        <div
-          class='container flex flex-row align-baseline space-y-2 rounded-lg shadow-md bg-white border border-slate-200 overflow-hidden'>
 
-          <div
-            class='flex items-center flex-grow basis-1/3 px-4 py-2 backdrop-blur-lg bg-gradient-to-r from-azureish/0 to-nyanza/100'>
-            <img class='object-cover h-5/6 w-auto rounded-md'
-              src='https://images.unsplash.com/photo-1522356587402-e1e87bf5aff2?q=80&w=1964&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D' />
-          </div>
-
-          <div class='flex flex-col justify-center basis-2/3 align-baseline'>
-            <div class='px-6'>
-              <h1 class='text-3xl font-medium'>Card Title</h1>
-              <p class='leading-snug mt-2 text-xs line-clamp-3'>Lorem ipsum,
-                dolor sit amet consectetur adipisicing elit. Ipsam praesentium,
-                eveniet animi laudantium saepe adipisci. Quo accusantium
-                placeat, beatae rem id voluptatibus officia minus deserunt,
-                tenetur enim nemo quod non.</p>
-            </div>
-            <div class='justify-self-end px-6 mt-4 mb-2'>
-              <button type='button'
-                class='text-gray-900 bg-white border border-gray-300 focus:outline-none hover:bg-gray-100 focus:ring-4 focus:ring-gray-200 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-gray-800 dark:text-white dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-600 dark:focus:ring-gray-700'>Issue
-                Book</button>
-            </div>
-          </div>
-
-        </div>
-      </div>
-
-      <div class='p-2 basis-full md:basis-1/2'>
-        <div
-          class='container flex flex-row align-baseline space-y-2 rounded-lg shadow-md bg-white border border-slate-200 overflow-hidden'>
-
-          <div
-            class='flex items-center flex-grow basis-1/3 px-4 py-2 backdrop-blur-lg bg-gradient-to-r from-azureish/0 to-nyanza/100'>
-            <img class='object-cover h-5/6 w-auto rounded-md'
-              src='https://images.unsplash.com/photo-1522356587402-e1e87bf5aff2?q=80&w=1964&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D' />
-          </div>
-
-          <div class='flex flex-col justify-center basis-2/3 align-baseline'>
-            <div class='px-6'>
-              <h1 class='text-3xl font-medium'>Card Title</h1>
-              <p class='leading-snug mt-2 text-xs line-clamp-3'>Lorem ipsum,
-                dolor sit amet consectetur adipisicing elit. Ipsam praesentium,
-                eveniet animi laudantium saepe adipisci. Quo accusantium
-                placeat, beatae rem id voluptatibus officia minus deserunt,
-                tenetur enim nemo quod non.</p>
-            </div>
-            <div class='justify-self-end px-6 mt-4 mb-2'>
-              <button type='button'
-                class='text-gray-900 bg-white border border-gray-300 focus:outline-none hover:bg-gray-100 focus:ring-4 focus:ring-gray-200 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-gray-800 dark:text-white dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-600 dark:focus:ring-gray-700'>Issue
-                Book</button>
-            </div>
-          </div>
-
-        </div>
-      </div>
-
-      <div class='p-2 basis-full md:basis-1/2'>
-        <div
-          class='container flex flex-row align-baseline space-y-2 rounded-lg shadow-md bg-white border border-slate-200 overflow-hidden'>
-          <div
-            class='flex items-center flex-grow basis-1/3 px-4 py-2 backdrop-blur-lg bg-gradient-to-r from-azureish/0 to-nyanza/100'>
-            <img class='object-cover object-bottom h-5/6 w-auto rounded-md'
-              src='https://images.unsplash.com/photo-1545063914-a1a6ec821c88?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D' />
-          </div>
-
-          <div class='flex flex-col justify-center basis-2/3 align-baseline'>
-            <div class='px-6'>
-              <h1 class='text-3xl font-medium'>Card Title</h1>
-              <p class='leading-snug mt-2 text-xs line-clamp-3'>Lorem ipsum,
-                dolor sit amet consectetur adipisicing elit. Ipsam praesentium,
-                eveniet animi laudantium saepe adipisci. Quo accusantium
-                placeat, beatae rem id voluptatibus officia minus deserunt,
-                tenetur enim nemo quod non.</p>
-            </div>
-            <div class='justify-self-end px-6 mt-4 mb-2'>
-              <button type='button'
-                class='text-gray-900 bg-white border border-gray-300 focus:outline-none hover:bg-gray-100 focus:ring-4 focus:ring-gray-200 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-gray-800 dark:text-white dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-600 dark:focus:ring-gray-700'>Issue
-                Book</button>
-            </div>
-          </div>
-
-        </div>
-      </div>
-
-      <div class='p-2 basis-full md:basis-1/2'>
-        <div
-          class='container flex flex-row align-baseline space-y-2 rounded-lg shadow-md bg-white border border-slate-200 overflow-hidden'>
-          <div
-            class='flex items-center flex-grow basis-1/3 px-4 py-2 backdrop-blur-lg bg-gradient-to-r from-azureish/0 to-nyanza/100'>
-            <img class='object-cover object-bottom h-5/6 w-auto rounded-md'
-              src='https://images.unsplash.com/photo-1545063914-a1a6ec821c88?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D' />
-          </div>
-
-          <div class='flex flex-col justify-center basis-2/3 align-baseline'>
-            <div class='px-6'>
-              <h1 class='text-3xl font-medium'>Card Title</h1>
-              <p class='leading-snug mt-2 text-xs line-clamp-3'>Lorem ipsum,
-                dolor sit amet consectetur adipisicing elit. Ipsam praesentium,
-                eveniet animi laudantium saepe adipisci. Quo accusantium
-                placeat, beatae rem id voluptatibus officia minus deserunt,
-                tenetur enim nemo quod non.</p>
-            </div>
-            <div class='justify-self-end px-6 mt-4 mb-2'>
-              <button type='button'
-                class='text-gray-900 bg-white border border-gray-300 focus:outline-none hover:bg-gray-100 focus:ring-4 focus:ring-gray-200 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-gray-800 dark:text-white dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-600 dark:focus:ring-gray-700'>Issue
-                Book</button>
-            </div>
-          </div>
-
-        </div>
-      </div>
-
-      <div class='p-2 basis-full md:basis-1/2'>
-        <div
-          class='container flex flex-row align-baseline space-y-2 rounded-lg shadow-md bg-white border border-slate-200 overflow-hidden'>
-          <div
-            class='flex items-center flex-grow basis-1/3 px-4 py-2 backdrop-blur-lg bg-gradient-to-r from-azureish/0 to-nyanza/100'>
-            <img class='object-cover object-bottom h-5/6 w-auto rounded-md'
-              src='https://images.unsplash.com/photo-1545063914-a1a6ec821c88?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D' />
-          </div>
-
-          <div class='flex flex-col justify-center basis-2/3 align-baseline'>
-            <div class='px-6'>
-              <h1 class='text-3xl font-medium'>Card Title</h1>
-              <p class='leading-snug mt-2 text-xs line-clamp-3'>Lorem ipsum,
-                dolor sit amet consectetur adipisicing elit. Ipsam praesentium,
-                eveniet animi laudantium saepe adipisci. Quo accusantium
-                placeat, beatae rem id voluptatibus officia minus deserunt,
-                tenetur enim nemo quod non.</p>
-            </div>
-            <div class='justify-self-end px-6 mt-4 mb-2'>
-              <button type='button'
-                class='text-gray-900 bg-white border border-gray-300 focus:outline-none hover:bg-gray-100 focus:ring-4 focus:ring-gray-200 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-gray-800 dark:text-white dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-600 dark:focus:ring-gray-700'>Issue
-                Book</button>
-            </div>
-          </div>
-
-        </div>
-      </div>
-
-      <div class='p-2 basis-full md:basis-1/2'>
-        <div
-          class='container flex flex-row align-baseline space-y-2 rounded-lg shadow-md bg-white border border-slate-200 overflow-hidden'>
-          <div
-            class='flex items-center flex-grow basis-1/3 px-4 py-2 backdrop-blur-lg bg-gradient-to-r from-azureish/0 to-nyanza/100'>
-            <img class='object-cover object-bottom h-5/6 w-auto rounded-md'
-              src='https://images.unsplash.com/photo-1545063914-a1a6ec821c88?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D' />
-          </div>
-
-          <div class='flex flex-col justify-center basis-2/3 align-baseline'>
-            <div class='px-6'>
-              <h1 class='text-3xl font-medium'>Card Title</h1>
-              <p class='leading-snug mt-2 text-xs line-clamp-3'>Lorem ipsum,
-                dolor sit amet consectetur adipisicing elit. Ipsam praesentium,
-                eveniet animi laudantium saepe adipisci. Quo accusantium
-                placeat, beatae rem id voluptatibus officia minus deserunt,
-                tenetur enim nemo quod non.</p>
-            </div>
-            <div class='justify-self-end px-6 mt-4 mb-2'>
-              <button type='button'
-                class='text-gray-900 bg-white border border-gray-300 focus:outline-none hover:bg-gray-100 focus:ring-4 focus:ring-gray-200 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-gray-800 dark:text-white dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-600 dark:focus:ring-gray-700'>Issue
-                Book</button>
-            </div>
-          </div>
-
-        </div>
-      </div>
-
-      <div class='p-2 basis-full md:basis-1/2'>
-        <div
-          class='container flex flex-row align-baseline space-y-2 rounded-lg shadow-md bg-white border border-slate-200 overflow-hidden'>
-          <div
-            class='flex items-center flex-grow basis-1/3 px-4 py-2 backdrop-blur-lg bg-gradient-to-r from-azureish/0 to-nyanza/100'>
-            <img class='object-cover object-bottom h-5/6 w-auto rounded-md'
-              src='https://images.unsplash.com/photo-1545063914-a1a6ec821c88?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D' />
-          </div>
-
-          <div class='flex flex-col justify-center basis-2/3 align-baseline'>
-            <div class='px-6'>
-              <h1 class='text-3xl font-medium'>Card Title</h1>
-              <p class='leading-snug mt-2 text-xs line-clamp-3'>Lorem ipsum,
-                dolor sit amet consectetur adipisicing elit. Ipsam praesentium,
-                eveniet animi laudantium saepe adipisci. Quo accusantium
-                placeat, beatae rem id voluptatibus officia minus deserunt,
-                tenetur enim nemo quod non.</p>
-            </div>
-            <div class='justify-self-end px-6 mt-4 mb-2'>
-              <button type='button'
-                class='text-gray-900 bg-white border border-gray-300 focus:outline-none hover:bg-gray-100 focus:ring-4 focus:ring-gray-200 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-gray-800 dark:text-white dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-600 dark:focus:ring-gray-700'>Issue
-                Book</button>
-            </div>
-          </div>
-
-        </div>
-      </div> }}
 
     </div>
+    <div class='row-start-6 row-span-full col-span-full h-fit flex justify-center'>
+      <div>
+        <nav aria-label="Page navigation example">
+          <ul class="inline-flex -space-x-px text-base h-10">
 
-    <div class='row-start-6 row-span-full col-span-full h-fit'>
+            {{#paginate-direction pagination.currentPage pagination.totalPages 'PREVIOUS'}}
+            <li>
+              <a href="books?page={{this.data}}"
+                class="flex items-center justify-center px-4 h-10 ms-0 leading-tight text-gray-500 bg-white border border-e-0 border-gray-300 rounded-s-lg hover:bg-gray-100 hover:text-gray-700 ">Previous</a>
+            </li>
+            {{/paginate-direction}}
 
-     {{!-- placeholder --}}
+            {{#paginate pagination.currentPage pagination.totalPages}}
+            <li>
+              {{#if this.isCurrentPage}}
+              <a href="/books?page={{this.data}}" aria-current="page"
+                class="flex items-center justify-center px-4 h-10 text-blue-600 border border-gray-300 bg-blue-50 hover:bg-blue-100 hover:text-blue-700">{{this.data}}</a>
+              {{else}}
+              <a href="/books?page={{this.data}}"
+                class="flex items-center justify-center px-4 h-10 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 ">{{this.data}}
+              </a>
+              {{/if}}
+            </li>
+            {{/paginate}}
+
+            {{#paginate-direction pagination.currentPage pagination.totalPages 'NEXT'}}
+            <li>
+              <a href="books?page={{this.data}}"
+                class="flex items-center justify-center px-4 h-10 leading-tight text-gray-500 bg-white border border-gray-300 rounded-e-lg hover:bg-gray-100 hover:text-gray-700 ">Next</a>
+            </li>
+            {{/paginate-direction}}
+
+
+          </ul>
+        </nav>
+
+
+      </div>
 
     </div>
 

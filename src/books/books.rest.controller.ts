@@ -31,7 +31,7 @@ export class BooksRestController {
     books.forEach((book) => {
       bookResponse.push({
         id: book.id,
-        text: book.title,
+        text: book.title + `(${book.registerNumber})`,
       });
     });
 

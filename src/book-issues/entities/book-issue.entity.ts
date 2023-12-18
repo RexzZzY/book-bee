@@ -28,4 +28,7 @@ export class BookIssue {
 
   @Column()
   returnDate: Date;
+
+  @Column({ default: false })
+  returned: boolean;
 }
