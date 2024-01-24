@@ -9,10 +9,12 @@ import {
   ClassSerializerInterceptor,
   UseInterceptors,
   Query,
+  Res,
 } from '@nestjs/common';
 import { BooksService } from './books.service';
 import { CreateBookDto } from './dto/create-book.dto';
 import { UpdateBookDto } from './dto/update-book.dto';
+import { Response } from 'express';
 
 @Controller('books')
 export class BooksController {
@@ -75,9 +77,13 @@ export class BooksController {
 
   // delete
   @Get(':id/delete')
-  @Redirect('/books')
-  async removeOne(@Param('id') id: string) {
-    await this.booksService.remove(+id);
+  async removeOne(@Param('id') id: string, @Res() res: Response) {
+    try {
+      await this.booksService.remove(+id);
+      return res.redirect('/books');
+    } catch (error) {
+      res.render('error/500');
+    }
   }
 
   // update
@@ -85,5 +91,11 @@ export class BooksController {
   @Redirect('/books')
   update(@Param('id') id: string, @Body() updateBookDto: UpdateBookDto) {
     return this.booksService.update(+id, updateBookDto);
+  }
+
+  @Get('*')
+  @Render('error/404')
+  notfound() {
+    return 0;
   }
 }

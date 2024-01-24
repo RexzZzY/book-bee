@@ -9,10 +9,12 @@ import {
   Render,
   Redirect,
   Query,
+  Res,
 } from '@nestjs/common';
 import { StudentsService } from './students.service';
 import { CreateStudentDto } from './dto/create-student.dto';
 import { UpdateStudentDto } from './dto/update-student.dto';
+import { Response } from 'express';
 
 @Controller('students')
 export class StudentsController {
@@ -60,9 +62,13 @@ export class StudentsController {
 
   // delete
   @Get(':id/delete')
-  @Redirect('/students')
-  async removeOne(@Param('id') id: string) {
-    await this.studentsService.remove(+id);
+  async removeOne(@Param('id') id: string, @Res() res: Response) {
+    try {
+      await this.studentsService.remove(+id);
+      return res.redirect('/students');
+    } catch (error) {
+      res.render('error/500');
+    }
   }
 
   // update
@@ -70,5 +76,11 @@ export class StudentsController {
   @Redirect('/students')
   update(@Param('id') id: string, @Body() updateStudentDto: UpdateStudentDto) {
     return this.studentsService.update(+id, updateStudentDto);
+  }
+
+  @Get('*')
+  @Render('error/404')
+  notfound() {
+    return 0;
   }
 }

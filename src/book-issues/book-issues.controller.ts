@@ -66,4 +66,10 @@ export class BookIssuesController {
   ) {
     return this.bookIssuesService.update(+id, updateBookIssueDto);
   }
+
+  @Get('*')
+  @Render('error/404')
+  notfound() {
+    return 0;
+  }
 }
